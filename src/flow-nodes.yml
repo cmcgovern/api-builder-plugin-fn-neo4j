@@ -1,0 +1,35 @@
+flow-nodes:
+  fn-neo4j:
+    name: Neo4J Query
+    icon: icon.svg
+    description: Send Cipher Queries to a Neo4J .
+    category: general
+    methods:
+      sendCipher: # This same key is used in `actions.js`
+        name: Send Cipher query
+        description: Sends a cipher command to a Neo4J database.
+        parameters:
+          query:
+            name: Cipher Query
+            description: Cipher Query to send.
+            required: true
+            initialType: string
+            schema:
+              type: string
+        # "Next" (next) output
+        returns:
+          name: Next
+          description: Queried records.
+          context: $.result
+          schema:
+            type: object
+        # "Error" (error) output
+        throws:
+          name: Error
+          description: No results found.
+          context: $.error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
